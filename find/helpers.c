@@ -3,9 +3,9 @@
  *
  * Helper functions for Problem Set 3.
  */
- 
-#include <cs50.h>
 
+#include <cs50.h>
+#include <stdio.h>
 #include "helpers.h"
 
 /**
@@ -13,7 +13,34 @@
  */
 bool search(int value, int values[], int n)
 {
-    // TODO: implement a searching algorithm
+    printf("Beginning search\n");
+    int left = 0;
+    int right = n;
+// while length of list > 0
+    do {
+//      look at middle of list
+//      if number found, return true
+        if (value == values[right / 2])
+        {
+            printf("%i ", values[right / 2]);
+            return true;
+        }
+//      else if number higher, search left
+        else if (value > values[right / 2])
+        {
+            printf("old left = %i ", left);
+            left = (right / 2) + 1;
+            printf("new left = %i ", left);
+        }
+//      else if number lower, search right
+        else if (value < values[right / 2])
+        {
+            printf("old right = %i ", right);
+            right = (right / 2) - 1;
+            printf("new right = %i ", right);
+        }
+    } while (n > 0);
+// return false
     return false;
 }
 
@@ -22,6 +49,35 @@ bool search(int value, int values[], int n)
  */
 void sort(int values[], int n)
 {
-    // TODO: implement a sorting algorithm
+
+// selection sort
+    printf("Beginning sort\n");
+// for i = 0 to n - 2
+    for (int i = 0; i < n; i++)
+    {
+//      min = i
+        int min = values[i];
+        int newMinLocation = i;
+//      find smallest element from i to n - 1
+        for (int j = i; j < n; j++)
+        {
+            if (min > values[j])
+            {
+                min = values[j];
+                newMinLocation = j;
+            }
+        }
+//      if min != i
+        if (min != values[i])
+//          exchange smallest element with element at i
+        {
+            values[newMinLocation] = values[i];
+            values[i] = min;
+
+        }
+    }
+    printf("Sort completed\n");
+    for (int k = 0; k < n; k++)
+    printf("%i ", values[k]);
     return;
 }
