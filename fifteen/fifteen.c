@@ -243,22 +243,47 @@ bool move(int tile)
         return false;
     }
     // initialize tile's location variables
-    int row = -1, col = -1;
+    int row = -1, col = -1, blankRow = -1, blankCol = -1;
+
+
+    // locate tile
     for (int i = 0; i < d; i++)
     {
         for (int j = 0; j < d; j++)
         {
-            if (tile = board[i][j])
+            if (board[i][j] == tile)
             {
                 // set tile location variables
                 row = i;
                 col = j;
             }
+            if (board[i][j] == 0)
+            {
+                blankRow = i;
+                blankCol = j;
+            }
         }
     }
 
     // determine if move is legal
-
+    if (row == blankRow)
+    {
+        if (abs(col - blankCol) == 1)
+        {
+            board[row][col] = 0;
+            board[blankRow][blankCol] = tile;
+            return true;
+        }
+    }
+    else if (col == blankCol)
+    {
+        if (abs(row - blankRow) == 1)
+        {
+            board[row][col] = 0;
+            board[blankRow][blankCol] = tile;
+            return true;
+        }
+    }
 
     // move tiles if legal
 
