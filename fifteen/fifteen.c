@@ -186,6 +186,43 @@ void init(void)
 void draw(void)
 {
     // TODO
+    int length = 6 + ((d - 1) * 5);
+    for (int k = 0; k < length; k++)
+    {
+        string line = "-";
+        printf("%s", line);
+    }
+    printf("\n");
+
+    for (int i = 0; i < d; i++)
+    {
+        printf("|");
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] != 0)
+            {
+                if (j != (d - 1))
+                {
+                    printf(" %2i |", board[i][j]);
+                }
+                else
+                {
+                    printf(" %2i ", board[i][j]);
+                }
+            }
+            else
+            {
+                printf("  _ ");
+            }
+        }
+        printf("|\n");
+        for (int k = 0; k < length; k++)
+        {
+            string line = "-";
+            printf("%s", line);
+        }
+        printf("\n");
+    }
 
 
 }
