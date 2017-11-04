@@ -237,6 +237,12 @@ void draw(void)
 bool move(int tile)
 {
     // TODO
+    // if tile number is out of bounds, break out
+    if (tile > ((d * d) - 1) || tile < 1)
+    {
+        return false;
+    }
+    // initialize tile's location variables
     int row = -1, col = -1;
     for (int i = 0; i < d; i++)
     {
@@ -244,11 +250,18 @@ bool move(int tile)
         {
             if (tile = board[i][j])
             {
+                // set tile location variables
                 row = i;
                 col = j;
             }
         }
     }
+
+    // determine if move is legal
+
+
+    // move tiles if legal
+
     return false;
 }
 
