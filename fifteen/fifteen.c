@@ -186,14 +186,18 @@ void init(void)
 void draw(void)
 {
     // TODO
+    // determine the length of the horizontal grid lines
     int length = 6 + ((d - 1) * 5);
+    string line = "-";
+
+    //print the initial grid line
     for (int k = 0; k < length; k++)
     {
-        string line = "-";
         printf("%s", line);
     }
     printf("\n");
 
+    // draw the grid with horizontals as | and each value
     for (int i = 0; i < d; i++)
     {
         printf("|");
@@ -210,21 +214,20 @@ void draw(void)
                     printf(" %2i ", board[i][j]);
                 }
             }
+            // print an underscore instead of 0
             else
             {
                 printf("  _ ");
             }
         }
         printf("|\n");
+        // print the horizontal grid line per row
         for (int k = 0; k < length; k++)
         {
-            string line = "-";
             printf("%s", line);
         }
         printf("\n");
     }
-
-
 }
 
 /**
