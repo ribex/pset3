@@ -157,7 +157,9 @@ void greet(void)
 void init(void)
 {
     // TODO
+    // determine maximum tile size
     int maxTile = (d * d) - 1;
+    // fill the 2d array; "empty" tile filled with 0
     do {
         for (int i = 0; i < d; i++)
         {
@@ -168,6 +170,14 @@ void init(void)
             }
         }
     } while (maxTile >= 0);
+
+    // swap second last and last tile if dimension is even
+    if (d % 2 == 0)
+    {
+        int temp = board[d - 1][d - 2];
+        board[d - 1][d - 2] = board[d - 1][d - 3];
+        board[d - 1][d - 3] = temp;
+    }
 }
 
 /**
@@ -176,6 +186,8 @@ void init(void)
 void draw(void)
 {
     // TODO
+
+
 }
 
 /**
