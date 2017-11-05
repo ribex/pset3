@@ -217,7 +217,14 @@ void draw(void)
             // print an underscore instead of 0
             else
             {
-                printf("  _ ");
+                if (j != (d - 1))
+                {
+                    printf("  _ |");
+                }
+                else
+                {
+                    printf("  _ ");
+                }
             }
         }
         printf("|\n");
