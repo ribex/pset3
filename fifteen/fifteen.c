@@ -121,7 +121,7 @@ int main(int argc, string argv[])
         }
 
         // sleep thread for animation's sake
-        usleep(500000);
+        usleep(50000);
     }
 
     // close log
@@ -259,17 +259,20 @@ bool move(int tile)
             }
             if (board[i][j] == 0)
             {
+                // set blank location variables
                 blankRow = i;
                 blankCol = j;
             }
         }
     }
 
-    // determine if move is legal
+    // determine if move is legal and if so, swap
     if (row == blankRow)
     {
+        // check adjacency
         if (abs(col - blankCol) == 1)
         {
+            // swap
             board[row][col] = 0;
             board[blankRow][blankCol] = tile;
             return true;
@@ -277,16 +280,15 @@ bool move(int tile)
     }
     else if (col == blankCol)
     {
+        // check adjacency
         if (abs(row - blankRow) == 1)
         {
+            // swap
             board[row][col] = 0;
             board[blankRow][blankCol] = tile;
             return true;
         }
     }
-
-    // move tiles if legal
-
     return false;
 }
 
@@ -296,6 +298,32 @@ bool move(int tile)
  */
 bool won(void)
 {
-    // TODO
-    return false;
+    // if the lower right corner isn't blank, game is not won
+    if (board[d - 1][d - 1] != 0)
+    {
+        return false;
+    }
+
+    int counter = 1;
+    // iterate through board to check each tile
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            // if the last position is reached, break out
+            if (i == (d - 1) && j == (d - 1))
+            {
+                break;
+            }
+            // if any tile position is out of order, game has not been won
+            if (board[i][j] != counter)
+            {
+                return false;
+            }
+            // get ready to check next value
+            counter++;
+        }
+    }
+    // if this point reached, board must be in order
+    return true;
 }
